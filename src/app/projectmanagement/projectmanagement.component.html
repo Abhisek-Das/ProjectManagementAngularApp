@@ -1,0 +1,33 @@
+<p>
+  
+</p>
+<!-- <div id="header"> Project Manager </div>
+<div id="sidebar-left">Options
+  <br>
+<a routerLink="/addproject">Add Project</a>
+<br>
+<a routerLink="/addtask">Add Task</a>
+<br>
+<a routerLink="/adduser">Add User</a>
+<br>
+<a routerLink="/viewtask">View Task</a>
+</div>
+<div id="main">
+  Main: <router-outlet></router-outlet>
+
+</div>
+<div id="footer">Footer</div> -->
+<div id="header"> Project Manager</div>
+<div id="sidebar-left">
+  
+  <button (click)="addproject()">Add Project</button><br>
+  <button (click)="addtask()">Add Task</button><br>
+  <button (click)="adduser()">Add User</button><br>
+  <button (click)="viewtask()">View Task</button><br>
+
+</div>
+<div id="main">
+  <router-outlet></router-outlet>
+  
+</div>
+<div id="footer"></div>

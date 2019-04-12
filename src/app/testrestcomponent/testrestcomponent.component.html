@@ -1,0 +1,17 @@
+<p>
+  testrestcomponent works!
+</p>
+<div id="header"> My Page</div>
+<div id="sidebar-left">Options
+  <br>
+  <button (click)="addproject()">Add Project</button>
+  <button (click)="addtask()">Add Task</button>
+  <button (click)="adduser()">Add User</button>
+  <button (click)="viewtask()">View Task</button>
+
+</div>
+<div id="main">
+  Main: <router-outlet></router-outlet>
+
+</div>
+<div id="footer">Footer</div>

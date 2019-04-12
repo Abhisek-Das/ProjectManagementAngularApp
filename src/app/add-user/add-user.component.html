@@ -1,0 +1,96 @@
+<!-- <p>
+  add-user works!
+</p> -->
+
+
+<div class="jumbotron">
+    <div [formGroup]="userForm" class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Add User</h2>
+                <!-- /*(ngSubmit)="onSubmit()"*/ -->
+                <!-- <form [formGroup]="userForm"> -->
+                    <!-- <div class="form-group"> -->
+                      <div>
+                        <label>First Name:      
+                            <input type="text" [(ngModel)]="taskuser.userfirstname" placeholder="First Name" formControlName="userfirstname"/>  
+                        </label>
+                        <!-- <input [(ngModel)]="taskuser.firstName" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" /> -->
+                        
+                    </div>
+                     <div>
+                        <label>Last Name: 
+                          <input [(ngModel)]="taskuser.userlastname" placeholder="Last Name" formControlName="userlastname"/>
+                        </label>
+                    </div>
+                    <div>
+                        <label>Employee ID:
+                          <input type="text" [(ngModel)]="taskuser.useremployeeid" placeholder="Employee ID" formControlName="useremployeeid"/>
+                        </label>
+                    </div>
+                    <tr>
+                      <td>
+                        <div>
+                            <button (click)="addUser()" class="btn btn-primary">{{AddUpdate}}</button>
+                        </div>
+                      </td>
+                      <td>
+                          <div>
+                              <button (click)="resetUser()" class="btn btn-primary">Reset</button>
+                          </div>
+
+                      </td>
+                    </tr>
+                
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <input [(ngModel)]="userSearch" placeholder="Search by Employee ID..."/>
+                <button (click)="searchUser()" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+  
+    </div>
+    <hr>
+    <div *ngFor="let user of users" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 offset-md-3">
+              <ul>
+                  <li >
+                      First Name:  {{ user.userfirstname }}
+                  </li>
+                  <li>
+                      Last Name:   {{ user.userlastname }}
+                  </li>
+                  <li>
+                      Last Name:  {{ user.useremployeeid }}
+                  </li>
+              </ul>
+          </div>
+          <div class="col-3">
+              <div class="row">
+                  <tr>
+                    <td>
+                      <button (click)="editUser(user)" class="btn btn-primary">Edit</button>
+                    </td>
+                    <td>
+                      <button (click)="deleteUser(user)" class="btn btn-primary">Delete</button>
+                    </td>
+                      
+                  </tr>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+</div>
+
+

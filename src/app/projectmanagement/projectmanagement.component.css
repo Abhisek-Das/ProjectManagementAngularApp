@@ -1,0 +1,37 @@
+/* @import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css"; */
+
+#header{
+    text-align: center;
+    height: 50px;
+    font-weight: bold;
+    background-color: azure;
+    font-size: 30px;
+    width: 100%;
+}
+
+#sidebar-left{
+float: left;
+width: 15%;
+min-height: 550px;
+background-color: antiquewhite;
+}
+
+#main{
+    float: left;
+    width: 85%;
+    min-height: 550px;
+    background-color: cadetblue;
+}
+
+#footer{
+    clear: both;
+    text-align: center;
+    height: 50px;
+    background-color: rgb(177, 159, 177);
+    width: 100%;
+}
+
+#sidebar-left, #main, {
+    min-height: 300px;				
+}
