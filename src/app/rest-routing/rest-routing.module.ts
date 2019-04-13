@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'addtask', component: AddTaskComponent },
   { path: 'adduser', component: AddUserComponent },
   { path: 'viewtask', component: ViewTaskComponent },
+  { path: '', component: AddUserComponent },
 ];
 
 @NgModule({

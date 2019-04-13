@@ -1,47 +1,35 @@
-<!-- <p>
-  add-user works!
-</p> -->
-
-
 <div class="jumbotron">
-    <div [formGroup]="userForm" class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h2>Add User</h2>
-                <!-- /*(ngSubmit)="onSubmit()"*/ -->
-                <!-- <form [formGroup]="userForm"> -->
-                    <!-- <div class="form-group"> -->
-                      <div>
+                    <div>
                         <label>First Name:      
-                            <input type="text" [(ngModel)]="taskuser.userfirstname" placeholder="First Name" formControlName="userfirstname"/>  
+                            <input type="text" [(ngModel)]="taskuser.userfirstname" placeholder="First Name"/>  
                         </label>
-                        <!-- <input [(ngModel)]="taskuser.firstName" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" /> -->
-                        
                     </div>
                      <div>
                         <label>Last Name: 
-                          <input [(ngModel)]="taskuser.userlastname" placeholder="Last Name" formControlName="userlastname"/>
+                          <input [(ngModel)]="taskuser.userlastname" placeholder="Last Name"/>
                         </label>
                     </div>
                     <div>
                         <label>Employee ID:
-                          <input type="text" [(ngModel)]="taskuser.useremployeeid" placeholder="Employee ID" formControlName="useremployeeid"/>
+                          <input type="text" [(ngModel)]="taskuser.useremployeeid" placeholder="Employee ID"/>
                         </label>
                     </div>
                     <tr>
                       <td>
                         <div>
-                            <button (click)="addUser()" class="btn btn-primary">{{AddUpdate}}</button>
+                            <button (click)="addUser()" class="btn btn-primary">{{addupdateButton}}</button>
                         </div>
                       </td>
                       <td>
                           <div>
                               <button (click)="resetUser()" class="btn btn-primary">Reset</button>
                           </div>
-
                       </td>
                     </tr>
-                
             </div>
         </div>
     </div>
@@ -49,9 +37,22 @@
     <hr>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-4 offset-md-3">
                 <input [(ngModel)]="userSearch" placeholder="Search by Employee ID..."/>
                 <button (click)="searchUser()" class="btn btn-primary">Search</button>
+                
+            </div>
+            <div class="col-md-5">
+                Sort:    
+                <td>
+                  <button (click)="sortByFirstName()" class="btn btn-primary">First Name</button>  
+                </td>       
+                <td>
+                  <button (click)="sortByLastName()" class="btn btn-primary">Last Name</button> 
+                </td>
+                <td>
+                  <button (click)="sortByID()" class="btn btn-primary">Id</button> 
+                </td>
             </div>
         </div>
   
@@ -69,7 +70,7 @@
                       Last Name:   {{ user.userlastname }}
                   </li>
                   <li>
-                      Last Name:  {{ user.useremployeeid }}
+                      Employee ID:  {{ user.useremployeeid }}
                   </li>
               </ul>
           </div>

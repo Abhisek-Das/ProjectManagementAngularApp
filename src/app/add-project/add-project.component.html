@@ -1,3 +1,126 @@
-<p>
+<!-- <p>
   add-project works!
-</p>
+</p> -->
+<div class="jumbotron">
+    <div class="container-fluid">
+        <div>
+            <div class="col-md-12">
+                <h2>Add Project</h2>
+                  <div>
+                    <tr>
+                        Project:      
+                          <input type="text" [(ngModel)]="proj.projectname" placeholder="Project Name" style="width: 500px;"/>  
+                    </tr>
+                    <tr>
+                          <input type="checkbox" data-md-icheck (change)="toggleVisibility($event)" [(ngModel)]="theCheckbox">
+                          Set Start and End Date
+                          <input type="text" [(ngModel)]="proj.projectstartdate" placeholder="Start Date" [disabled]="!theCheckbox"/> 
+                          <input type="text" [(ngModel)]="proj.projectenddate" placeholder="End Date" [disabled]="!theCheckbox"/> 
+                    </tr>
+                    <tr>
+                      Priority:{{proj.projectpriority}}
+                      <input type="range" [ngModel]="proj.projectpriority" (ngModelChange)="valueChanged($event)" min="1" max="30" value="20"> 
+                    </tr>
+                    <tr>
+                      Manager:
+                      <input type="text" [(ngModel)]="this.projectmanager" [disabled]="true"> 
+                      <button (click)="getUsers()" class="btn btn-primary">Search</button> 
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>
+                          <button (click)="addProject()" class="btn btn-primary">Add</button>
+                          <button (click)="resetProject()" class="btn btn-primary">Reset</button>
+                        </div>
+                      </td> 
+                    </tr>
+                    
+                  </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div *ngFor="let user of users" >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-9">
+              <li>
+                  First Name:  {{ user.userfirstname }}<br>
+                  Last Name:   {{ user.userlastname }}<br>
+                  Employee ID:  {{ user.useremployeeid }}<br>
+              </li>
+            </div>
+            <div class="col-md-3">
+              <button (click)="selectUser(user)" class="btn btn-primary">Select</button>      
+            </div>
+          </div>
+        </div>
+        <hr>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+                Sort By:    
+                <td>
+                  <button (click)="sortByStartDate()" class="btn btn-primary">Start Date</button>  
+                </td>       
+                <td>
+                  <button (click)="sortByEndDate()" class="btn btn-primary">End Date</button> 
+                </td>
+                <td>
+                  <button (click)="sortByPriority()" class="btn btn-primary">Priority</button> 
+                </td>
+                <td>
+                  <button (click)="sortByCompleted()" class="btn btn-primary">Completed</button> 
+                </td>
+            </div>
+        </div>  
+    </div>
+
+    <hr>
+    <div *ngFor="let project of projects" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 offset-md-3">
+              <ul>
+                  <li >
+                      Project Name:  {{ project.project.projectname }}
+                  </li>
+                  <li>
+                      No of Task:   {{ project.taskcount }}
+                  </li>
+                  <li>
+                      Start Date:   {{ project.project.projectstartdate }}
+                  </li>
+              </ul>
+              <ul>
+                  <li>
+                      Priority:  {{ project.project.projectpriority }}
+                  </li>
+                  <li>
+                      Completed:  {{ project.completed }}
+                  </li>
+                  <li>
+                      End Date:  {{ project.project.projectenddate }}
+                  </li>
+              </ul>
+          </div>
+          <div class="col-3">
+              <div class="row">
+                  <tr>
+                    <td>
+                      <button (click)="editUser(user)" class="btn btn-primary">Edit</button>
+                    </td>
+                    <td>
+                      <button (click)="deleteUser(user)" class="btn btn-primary">Delete</button>
+                    </td>
+                      
+                  </tr>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+

@@ -40,11 +40,41 @@ export class UserdatafetcherService {
 
   editData(user){
     console.log("User to be edited" + user.useremployeeid);
-    return this.httpClientObj.put<any>(userURL + '/updateUser/' + user.useremployeeid, JSON.stringify(user),
+    return this.httpClientObj.put<any>(userURL + '/updateUser/' + user.userid, JSON.stringify(user),
           httpOptions).pipe(tap((postData: any)=> console.log('updatedData')),
           catchError(this.handleError<any>('editData'))
     );
   }
+
+  deleteData(user){
+    console.log("User to be deleted" + user.userid);
+    return this.httpClientObj.delete<any>(userURL + '/deleteUser/' + user.userid, httpOptions).pipe(
+      map(this.Data),  
+      tap((postData: any)=> console.log('Data deleted')),  
+          catchError(this.handleError<any>('deleteData'))
+    );
+  }
+
+  getData(){
+    return this.httpClientObj.get(userURL + '/viewUser').pipe(
+      map(this.Data));
+  }
+
+  sortDataByFirstName(){
+    return this.httpClientObj.get(userURL + '/sortUserByFirstName').pipe(
+      map(this.Data));
+  }
+
+  sortDataByLastName(){
+    return this.httpClientObj.get(userURL + '/sortUserByLastName').pipe(
+      map(this.Data));
+  }
+
+  sortDataByEmployeeID(){
+    return this.httpClientObj.get(userURL + '/sortUserByEmployeeID').pipe(
+      map(this.Data));
+  }
+
 
   /**
  * Handle Http operation that failed.

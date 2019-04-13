@@ -19,14 +19,34 @@
 <div id="footer">Footer</div> -->
 <div id="header"> Project Manager</div>
 <div id="sidebar-left">
-  
-  <button (click)="addproject()">Add Project</button><br>
-  <button (click)="addtask()">Add Task</button><br>
-  <button (click)="adduser()">Add User</button><br>
-  <button (click)="viewtask()">View Task</button><br>
+  <div class="jumbotron" style="background-color: antiquewhite">
+    <div class="row">
+      <div>
+          <td>
+              <button (click)="addproject()" class="btn btn-success">Add Project</button>
+          </td>
+      </div>
+      <div>
+          <td>
+              <button (click)="addtask()" class="btn btn-success">Add Task</button>
+          </td>
+      </div>
+      <div>
+        <td>
+          <button (click)="adduser()" class="btn btn-success">Add User</button>
+        </td>
+      </div>
+      <div>
+        <td>
+          <button (click)="viewtask()" class="btn btn-success">View Task</button>
+        </td>
+      </div>    
+    </div>
+</div>
 
 </div>
 <div id="main">
+    
   <router-outlet></router-outlet>
   
 </div>
