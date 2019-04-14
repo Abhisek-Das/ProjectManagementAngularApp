@@ -8,14 +8,14 @@
                 <h2>Add Project</h2>
                   <div>
                     <tr>
-                        Project:      
-                          <input type="text" [(ngModel)]="proj.projectname" placeholder="Project Name" style="width: 500px;"/>  
+                      Project:      
+                      <input type="text" [(ngModel)]="proj.projectname" placeholder="Project Name" style="width: 500px;"/>  
                     </tr>
                     <tr>
-                          <input type="checkbox" data-md-icheck (change)="toggleVisibility($event)" [(ngModel)]="theCheckbox">
-                          Set Start and End Date
-                          <input type="text" [(ngModel)]="proj.projectstartdate" placeholder="Start Date" [disabled]="!theCheckbox"/> 
-                          <input type="text" [(ngModel)]="proj.projectenddate" placeholder="End Date" [disabled]="!theCheckbox"/> 
+                      <input type="checkbox" data-md-icheck (change)="toggleVisibility($event)" [(ngModel)]="theCheckbox">
+                      Set Start and End Date
+                      <input type="text" [(ngModel)]="proj.projectstartdate" placeholder="Start Date" [disabled]="!theCheckbox"/> 
+                      <input type="text" [(ngModel)]="proj.projectenddate" placeholder="End Date" [disabled]="!theCheckbox"/> 
                     </tr>
                     <tr>
                       Priority:{{proj.projectpriority}}
@@ -24,12 +24,12 @@
                     <tr>
                       Manager:
                       <input type="text" [(ngModel)]="this.projectmanager" [disabled]="true"> 
-                      <button (click)="getUsers()" class="btn btn-primary">Search</button> 
+                      <button (click)="getUsers()" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Search</button> 
                     </tr>
                     <tr>
                       <td>
                         <div>
-                          <button (click)="addProject()" class="btn btn-primary">Add</button>
+                          <button (click)="addProject()" class="btn btn-primary">{{this.buttonText}}</button>
                           <button (click)="resetProject()" class="btn btn-primary">Reset</button>
                         </div>
                       </td> 
@@ -40,7 +40,7 @@
         </div>
     </div>
     <hr>
-    <div *ngFor="let user of users" >
+    <!-- <div *ngFor="let user of users" >
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-9">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <hr>
-    </div>
+    </div> -->
     
     <div class="container-fluid">
         <div class="row">
@@ -82,10 +82,10 @@
     <div *ngFor="let project of projects" >
       <div class="container-fluid">
         <div class="row">
-          <div class="col-6 offset-md-3">
+          <div class="col-md-4">
               <ul>
                   <li >
-                      Project Name:  {{ project.project.projectname }}
+                      Project:  {{ project.project.projectname }}
                   </li>
                   <li>
                       No of Task:   {{ project.taskcount }}
@@ -94,6 +94,8 @@
                       Start Date:   {{ project.project.projectstartdate }}
                   </li>
               </ul>
+          </div>
+          <div class="col-md-4">
               <ul>
                   <li>
                       Priority:  {{ project.project.projectpriority }}
@@ -106,16 +108,17 @@
                   </li>
               </ul>
           </div>
-          <div class="col-3">
+          <div class="col-md-4">
               <div class="row">
                   <tr>
                     <td>
-                      <button (click)="editUser(user)" class="btn btn-primary">Edit</button>
-                    </td>
+                      <button (click)="editProject(project)" class="btn btn-primary">Update</button>
+                    </td>   
+                  </tr>
+                  <tr>
                     <td>
-                      <button (click)="deleteUser(user)" class="btn btn-primary">Delete</button>
+                      <button (click)="deleteProject(project)" class="btn btn-primary">Suspend</button>
                     </td>
-                      
                   </tr>
               </div>
           </div>
@@ -124,3 +127,20 @@
       </div>
     </div>
 
+    <div class="modal fade" id="userModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Select Manager</h4>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" styles="z-index:1040;">
+              <select [(ngModel)]="userSelected" (ngModelChange)="selectUser()">
+                <option *ngFor="let user of users" [ngValue]="user">{{user.userfirstname}}||EmployeeID:{{user.useremployeeid}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>

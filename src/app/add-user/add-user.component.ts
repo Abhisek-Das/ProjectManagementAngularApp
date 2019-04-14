@@ -12,7 +12,7 @@ export class AddUserComponent implements OnInit {
 
   userSearch: number;
   users: any;
-  @Input() taskuser = {userid:0, userfirstname: '', userlastname: '', useremployeeid: null};
+  taskuser = {userid:0, userfirstname: '', userlastname: '', useremployeeid: null};
   addupdateButton: String = "Add";
 
 

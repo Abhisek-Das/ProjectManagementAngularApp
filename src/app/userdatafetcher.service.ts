@@ -75,6 +75,13 @@ export class UserdatafetcherService {
       map(this.Data));
   }
 
+  //Needed for project data deletion
+  updateUserByProjectID(projectid){
+    return this.httpClientObj.put<any>(userURL + '/updateUserByProjectid/' + projectid, httpOptions).pipe(  
+      tap((postData: any)=> console.log('Project id set to null in user table')),  
+          catchError(this.handleError<any>('updateUserByProjectID in user data fetcher'))
+    );
+  }
 
   /**
  * Handle Http operation that failed.

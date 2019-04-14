@@ -1,3 +1,119 @@
-<p>
-  add-task works!
-</p>
+<!-- <p>
+  add-project works!
+</p> -->
+<div class="jumbotron">
+    <div class="container-fluid">
+        <div>
+            <div class="col-lg-12">
+                <h2>Add Task</h2>
+                  <div>
+                    <tr>
+                      <label class="col-lg-3">
+                          Project:
+                      </label>
+                      <input class="col-lg-6" type="text" [(ngModel)]="this.projectname" placeholder="Project Name" [disabled]="true"/>  
+                      <button (click)="getProjects()" class="btn btn-primary col-lg-3" data-toggle="modal" data-target="#projectModal" [disabled]="theParentTask">Search</button> 
+                    </tr>
+                    <tr>
+                      <label class="col-lg-3">
+                          Task:
+                      </label>
+                      <input class="col-lg-9" type="text" [(ngModel)]="this.taskname" placeholder="Task Name"/> 
+                    </tr>
+                    <tr>
+                      <div class="col-lg-9">
+                          <input type="checkbox" data-md-icheck (change)="toggleVisibility($event)" [(ngModel)]="theParentTask">
+                          Parent Task                        
+                      </div>                      
+                    </tr>
+                    <tr>
+                      <div class="col-lg-9">
+                        Priority:{{task.taskpriority}}
+                        <input type="range" [ngModel]="task.taskpriority" (ngModelChange)="valueChanged($event)" min="1" max="30" value="20" [disabled]="theParentTask"> 
+                      </div>
+                    </tr>
+                    <tr>
+                      <label class="col-lg-4">
+                          ParentTask:
+                      </label>
+                      <input class="col-lg-5" type="text" [(ngModel)]="this.parenttaskname" placeholder="Parent Task Name" [disabled]="true"/> 
+                      <button (click)="getParentTask()" class="btn btn-primary col-lg-3" data-toggle="modal" data-target="#parenttaskModal" [disabled]="theParentTask">Search</button> 
+                    </tr>
+                    <tr>
+                        Start Date:
+                        <input type="text" [(ngModel)]="task.taskstartdate" placeholder="Start Date" [disabled]="theParentTask"/> 
+                        End Date:
+                        <input type="text" [(ngModel)]="task.taskenddate" placeholder="End Date" [disabled]="theParentTask"/>
+                    </tr>
+                    <tr>
+                      <label class="col-lg-4">
+                      User:
+                      </label>
+                      <input class="col-lg-5" type="text" [(ngModel)]="this.username" placeholder="User Name" [disabled]="true"/> 
+                      <button (click)="getUser()" class="btn btn-primary col-lg-3" data-toggle="modal" data-target="#userModal" [disabled]="theParentTask">Search</button> 
+                    </tr>
+                    <tr>
+                      <button (click)="addTask()" class="btn btn-primary">Add</button>
+                      <button (click)="resetTask()" class="btn btn-primary">Reset</button>
+                    </tr>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="userModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Select User</h4>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" styles="z-index:1040;">
+              <select [(ngModel)]="taskuserSelected" (ngModelChange)="selectUser()">
+                <option *ngFor="let usr of userslist" [ngValue]="usr">{{usr.userfirstname || usr.useremployeeid}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="parenttaskModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Select Parent Task</h4>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" styles="z-index:1040;">
+              <select [(ngModel)]="parenttaskSelected" (ngModelChange)="selectParentTask()">
+                <option *ngFor="let ptask of parentaskslist" [ngValue]="ptask">{{ptask.parenttask}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Select Project</h4>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" styles="z-index:1040;">
+              <select [(ngModel)]="projSelected" (ngModelChange)="selectProject()">
+                <option *ngFor="let proj of projects" [ngValue]="proj">{{proj.projectname}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
