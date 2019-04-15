@@ -53,8 +53,8 @@
                       <button (click)="getUser()" class="btn btn-primary col-lg-3" data-toggle="modal" data-target="#userModal" [disabled]="theParentTask">Search</button> 
                     </tr>
                     <tr>
-                      <button (click)="addTask()" class="btn btn-primary">Add</button>
-                      <button (click)="resetTask()" class="btn btn-primary">Reset</button>
+                      <button (click)="addTask()" class="btn btn-primary">{{buttonText}}</button>
+                      <button (click)="reset()" class="btn btn-primary">Reset</button>
                     </tr>
                   </div>
             </div>

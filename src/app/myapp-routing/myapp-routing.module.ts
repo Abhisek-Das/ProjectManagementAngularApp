@@ -9,6 +9,7 @@ import { ViewTaskComponent } from '../view-task/view-task.component';
 const routes: Routes = [
   { path: 'addproject', component: AddProjectComponent },
   { path: 'addtask', component: AddTaskComponent },
+  { path: 'edittask/:id', component: AddTaskComponent },
   { path: 'adduser', component: AddUserComponent },
   { path: 'viewtask', component: ViewTaskComponent },
   { path: '', component: AddUserComponent },

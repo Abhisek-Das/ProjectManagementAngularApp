@@ -37,6 +37,53 @@ export class TaskdatafetcherService {
       catchError(this.handleError<any>('addTask'))
     );
   }
+
+  viewTaskByProjectID(projectid){
+    return this.httpClientObj.get(userURL + '/viewTaskByProject/' + projectid).pipe(
+      map(this.Data)
+    );
+  }
+
+  viewTaskSortByStartDate(projectid){
+    return this.httpClientObj.get(userURL + '/sortTaskByStartDate/' + projectid).pipe(
+      map(this.Data)
+    );
+  }
+
+  viewTaskSortByEndDate(projectid){
+    return this.httpClientObj.get(userURL + '/sortTaskByEndDate/' + projectid).pipe(
+      map(this.Data)
+    );
+  }
+
+  viewTaskSortByPriority(projectid){
+    return this.httpClientObj.get(userURL + '/sortTaskByPriority/' + projectid).pipe(
+      map(this.Data)
+    );
+  }
+
+  viewTaskSortByCompleted(projectid){
+    return this.httpClientObj.get(userURL + '/sortTaskByTaskStatus/' + projectid).pipe(
+      map(this.Data)
+    );
+  }
+
+  viewTaskByTaskID(taskid){
+    return this.httpClientObj.get(userURL + '/viewTaskById/' + taskid).pipe(
+      map(this.Data)
+    );
+  }
+
+  updateData(postData){
+    console.log("postData.taskid: " + postData.taskid);
+
+    return this.httpClientObj.put<any>(userURL + '/updateTaskByID/' + postData.taskid, JSON.stringify(postData), httpOptions).pipe(
+      (map(this.Data)),  
+      tap((postData: any)=> console.log('Updated Task')),
+      catchError(this.handleError<any>('update Task service'))
+    );
+
+  }
  
   /**
    * Handle Http operation that failed.

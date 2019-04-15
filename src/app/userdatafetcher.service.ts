@@ -83,6 +83,18 @@ export class UserdatafetcherService {
     );
   }
 
+  viewDataByTaskID(id):Observable<any>{
+    console.log("Task ID:"+id);
+    return this.httpClientObj.get(userURL + '/viewUserByTaskId/'+id).pipe(
+      map(this.Data));
+  }
+
+  viewDataByProjectID(id):Observable<any>{
+    console.log("Task ID:"+id);
+    return this.httpClientObj.get(userURL + '/viewUserByProjectId/'+id).pipe(
+      map(this.Data));
+  }
+
   /**
  * Handle Http operation that failed.
  * Let the app continue.

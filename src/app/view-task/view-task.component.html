@@ -1,3 +1,121 @@
-<p>
-  view-task works!
-</p>
+<!-- <p>
+  add-project works!
+</p> -->
+<div class="jumbotron">
+    <div class="container-fluid">
+      <div class="col-lg-12"></div>
+      <h2>View Task</h2>
+        <tr>
+          Project:
+          <input type="text" [(ngModel)]="projectname" placeholder="Project Name" [disabled]="true"/>  
+          <button (click)="getProjects()" class="btn btn-primary col-lg-3" data-toggle="modal" data-target="#projectModal">Search</button> 
+          <div>
+            Sort By:    
+            <td>
+              <button (click)="sortByStartDate()" class="btn btn-primary">Start Date</button>  
+            </td>       
+            <td>
+              <button (click)="sortByEndDate()" class="btn btn-primary">End Date</button> 
+            </td>
+            <td>
+              <button (click)="sortByPriority()" class="btn btn-primary">Priority</button> 
+            </td>
+            <td>
+              <button (click)="sortByCompleted()" class="btn btn-primary">Completed</button> 
+            </td>
+          </div>
+        </tr>
+    </div>
+
+    <hr>
+
+    <div class="modal fade" id="projectModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Select Project</h4>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" styles="z-index:1040;">
+              <select [(ngModel)]="projSelected" (ngModelChange)="selectProject()">
+                <option *ngFor="let proj of projects" [ngValue]="proj">{{proj.projectname}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div *ngFor="let tsk of tasklist" >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Task  
+                    </li>
+                    <li class="list-group-item">
+                        {{ tsk.taskname }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Parent  
+                    </li>
+                    <li class="list-group-item"> 
+                        {{ tsk.parenttask.parenttask }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Priority  
+                    </li>
+                    <li class="list-group-item"> 
+                        {{ tsk.taskpriority }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Start  
+                    </li>
+                    <li class="list-group-item"> 
+                        {{ tsk.taskstartdate }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        End  
+                    </li>
+                    <li class="list-group-item"> 
+                        {{ tsk.taskenddate }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <tr>
+                      <td>
+                        <!-- <button (click)="editUser(user)" class="btn btn-primary">Edit</button> -->
+                        <button routerLink="/edittask/{{tsk.taskid}}" class="btn btn-primary">Edit</button>
+                      </td>
+                      <td>
+                        <button (click)="endTask(tsk)" class="btn btn-primary">End Task</button>
+                      </td>
+                        
+                    </tr>
+                </div>
+            </div>
+            <hr>
+          </div>
+      
+
+
