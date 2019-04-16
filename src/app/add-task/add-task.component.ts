@@ -49,7 +49,7 @@ export class AddTaskComponent implements OnInit {
     this.tomorrowDate.setDate(this.tomorrowDate.getDate()+1);
     this.edittaskid = this.route.snapshot.params['id'];
 
-    console.log("Edit task id:" +this.edittaskid);
+    // console.log("Edit task id:" +this.edittaskid);
     if (this.edittaskid == undefined){
       this.buttonText = "Add";
       this.theParentTask = true;
@@ -86,42 +86,42 @@ export class AddTaskComponent implements OnInit {
   }
 
   valueChanged(e) {
-    console.log("target slider value: " +e);
+    // console.log("target slider value: " +e);
     // this.rangevalue = e.target.value;
     this.task.taskpriority = e;
   }
 
   getProjects(){
     this.projectDataFetcher.getProjects().subscribe((param)=> {this.projects=param;
-      console.log("get Projects error msg:" +this.projects.errorMessage);
+      // console.log("get Projects error msg:" +this.projects.errorMessage);
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
   }
 
   selectProject(){   
-      console.log("selected project:"+this.projSelected);
+      // console.log("selected project:"+this.projSelected);
       this.project = this.projSelected;
       this.projectname = this.projSelected.projectname;
 
-      console.log("this.projectname: " +this.projectname);
+      // console.log("this.projectname: " +this.projectname);
   }
 
   getParentTask(){
     this.parenttaskDataFetcher.getParentTasks().subscribe((param)=> {this.parentaskslist=param;
-      console.log("get ParentTask error msg:" +this.parentaskslist.errorMessage);
+      // console.log("get ParentTask error msg:" +this.parentaskslist.errorMessage);
       if (this.parentaskslist.errorMessage == "Parent Task Not Found"){
-        console.log("No ParentTask");
+        // console.log("No ParentTask");
         this.parentaskslist = [];
       }
     })
   }
 
   selectParentTask(){
-    console.log("ParentTask Name:" +this.parenttaskSelected);
-    console.log("Parent taskname:" +this.parenttaskSelected.parenttask);
+    // console.log("ParentTask Name:" +this.parenttaskSelected);
+    // console.log("Parent taskname:" +this.parenttaskSelected.parenttask);
     this.parenttaskname = this.parenttaskSelected.parenttask;
     this.parenttask = this.parenttaskSelected;
   }
@@ -150,7 +150,7 @@ export class AddTaskComponent implements OnInit {
         this.parenttaskObj.parenttask = this.taskname;
 
         this.parenttaskDataFetcher.addParentTasks(this.parenttaskObj).subscribe((param) => {
-          console.log("parent task added");
+          // console.log("parent task added");
           this.reset();
         });
       }
@@ -162,9 +162,9 @@ export class AddTaskComponent implements OnInit {
         return;
       }
       else{
-        console.log("Button text value in else:" +this.buttonText)
+        // console.log("Button text value in else:" +this.buttonText)
         if (this.buttonText == "Add"){
-          console.log("in add");
+          // console.log("in add");
           this.task.taskname = this.taskname;
           this.task.parenttask = this.parenttaskSelected;
           this.task.project = this.projSelected;
@@ -174,16 +174,16 @@ export class AddTaskComponent implements OnInit {
 
           this.taskDataFetcher.addTask(this.task).subscribe((param) => {
             this.user.task=param;
-            console.log("Task Added:"+this.task.taskid);
+            // console.log("Task Added:"+this.task.taskid);
             this.userDataFetcher.addData(this.user).subscribe((param) => {
-              console.log("User added corresponding to task");
+              // console.log("User added corresponding to task");
               this.reset();
             })
           })
   
         }
         else{
-          console.log("in update button logic");
+          // console.log("in update button logic");
           this.task = this.updatedTaskInfo;
           this.task.taskname = this.taskname;
           this.task.parenttask = this.updatedTaskInfo.parenttask;
@@ -193,9 +193,9 @@ export class AddTaskComponent implements OnInit {
 
           this.taskDataFetcher.updateData(this.task).subscribe((param) => {
             this.user.task=param;
-            console.log("Task updated:"+this.task.taskid);
+            // console.log("Task updated:"+this.task.taskid);
             this.userDataFetcher.addData(this.user).subscribe((param) => {
-              console.log("User added corresponding to task");
+              // console.log("User added corresponding to task");
               this.reset();
             })
           })

@@ -24,7 +24,7 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser(){
-    console.log("in user component.ts" +this.taskuser.userfirstname);
+    // console.log("in user component.ts" +this.taskuser.userfirstname);
     if (this.taskuser.userfirstname=="" || this.taskuser.userlastname=="" || this.taskuser.useremployeeid==null){
       alert("Input Field should not be blank")
       return;
@@ -34,14 +34,14 @@ export class AddUserComponent implements OnInit {
         this.getUsers();
         this.resetUser();
       });
-      console.log("users is:" + this.users);
+      // console.log("users is:" + this.users);
     }
     else{
       this.userDataFetcher.editData(this.taskuser).subscribe((param) => {this.users=param;
         this.getUsers();
         this.resetUser();
       });
-      console.log("Updated users is:" + this.users);
+      // console.log("Updated users is:" + this.users);
     }
     
     this.addupdateButton = "Add";
@@ -60,9 +60,9 @@ export class AddUserComponent implements OnInit {
       return;
     }
     this.userDataFetcher.viewDataByID(this.userSearch).subscribe((param) => {this.users=param;
-      console.log("Get Data Param is:"+this.users.userfirstname);
-      console.log("param is:" +param);
-      console.log("error msg is:" + this.users.errorMessage);
+      // console.log("Get Data Param is:"+this.users.userfirstname);
+      // console.log("param is:" +param);
+      // console.log("error msg is:" + this.users.errorMessage);
     if (this.users.errorMessage === "User not found"){
       alert (this.users.errorMessage);
       this.users = [];
@@ -73,25 +73,25 @@ export class AddUserComponent implements OnInit {
 
 
   editUser(user){
-    console.log("User to be edited:" +user.useremployeeid);
+    // console.log("User to be edited:" +user.useremployeeid);
     this.taskuser = user;
     this.addupdateButton = "Update";
   }
 
   deleteUser(user){
-    console.log("User to be deleted:" +user.useremployeeid);
-    console.log("User id to be deleted:" +user.userid);
+    // console.log("User to be deleted:" +user.useremployeeid);
+    // console.log("User id to be deleted:" +user.userid);
     this.userDataFetcher.deleteData(user).subscribe((param) => {this.users=param;
       this.getUsers();
     });
-    console.log("Deleted users is:" + this.users);
+    // console.log("Deleted users is:" + this.users);
     
   }
 
   getUsers(){
     this.userDataFetcher.getData().subscribe((param)=> {this.users=param;
       if (this.users.errorMessage == "User not found"){
-        console.log("No Users");
+        // console.log("No Users");
         this.users = [];
       }
     });
@@ -100,7 +100,7 @@ export class AddUserComponent implements OnInit {
   sortByFirstName(){
     this.userDataFetcher.sortDataByFirstName().subscribe((param)=> {this.users=param;
       if (this.users.errorMessage == "User not found"){
-        console.log("No Users");
+        // console.log("No Users");
         this.users = [];
       }
     });
@@ -109,7 +109,7 @@ export class AddUserComponent implements OnInit {
   sortByLastName(){
     this.userDataFetcher.sortDataByLastName().subscribe((param)=> {this.users=param;
       if (this.users.errorMessage == "User not found"){
-        console.log("No Users");
+        // console.log("No Users");
         this.users = [];
       }
     });
@@ -118,7 +118,7 @@ export class AddUserComponent implements OnInit {
   sortByID(){
     this.userDataFetcher.sortDataByEmployeeID().subscribe((param)=> {this.users=param;
       if (this.users.errorMessage == "User not found"){
-        console.log("No Users");
+        // console.log("No Users");
         this.users = [];
       }
     });

@@ -61,7 +61,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   valueChanged(e) {
-    console.log("target slider value: " +e);
+    // console.log("target slider value: " +e);
     // this.rangevalue = e.target.value;
     this.proj.projectpriority = e;
   }
@@ -69,7 +69,7 @@ export class AddProjectComponent implements OnInit {
   getUsers(){
     this.userDataFetcher.getData().subscribe((param)=> {this.users=param;
       if (this.users.errorMessage == "User not found"){
-        console.log("No Users");
+        // console.log("No Users");
         this.users = [];
       }
     });
@@ -79,15 +79,15 @@ export class AddProjectComponent implements OnInit {
     
     this.taskuser = this.userSelected;
     this.projectmanager = this.userSelected.userfirstname;
-    console.log("USer in select user:" +this.userSelected.userfirstname);
-    console.log("taskuser:" +this.taskuser);
+    // console.log("USer in select user:" +this.userSelected.userfirstname);
+    // console.log("taskuser:" +this.taskuser);
 
   }
 
   addProject(){
 
-    console.log("taskuser in project component: "+ this.taskuser.useremployeeid);
-    console.log("Add project name:" +this.proj.projectname);
+    // console.log("taskuser in project component: "+ this.taskuser.useremployeeid);
+    // console.log("Add project name:" +this.proj.projectname);
     this.projSelected = this.proj;
     this.taskuser.project = this.projSelected;
 
@@ -101,7 +101,7 @@ export class AddProjectComponent implements OnInit {
     }
 
     this.userDataFetcher.addData(this.taskuser).subscribe((param) => {
-      console.log("project added");
+      // console.log("project added");
       this.resetProject();
       this.getProjects();
     });
@@ -125,9 +125,9 @@ export class AddProjectComponent implements OnInit {
 
   getProjects(){
     this.projectDataFetcher.getData().subscribe((param)=> {this.projects=param;
-      console.log("get Projects error msg:" +this.projects.errorMessage);
+      // console.log("get Projects error msg:" +this.projects.errorMessage);
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -136,7 +136,7 @@ export class AddProjectComponent implements OnInit {
   sortByEndDate(){
     this.projectDataFetcher.sortDataByEndDate().subscribe((param)=> {this.projects=param;
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -145,7 +145,7 @@ export class AddProjectComponent implements OnInit {
   sortByPriority(){
     this.projectDataFetcher.sortDataByPriority().subscribe((param)=> {this.projects=param;
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -154,7 +154,7 @@ export class AddProjectComponent implements OnInit {
   sortByCompleted(){
     this.projectDataFetcher.sortDataByCompleted().subscribe((param)=> {this.projects=param;
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -163,7 +163,7 @@ export class AddProjectComponent implements OnInit {
   sortByStartDate(){
     this.projectDataFetcher.sortDataByStartDate().subscribe((param)=> {this.projects=param;
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("No Projects");
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -171,15 +171,15 @@ export class AddProjectComponent implements OnInit {
 
   editProject(projectInfo){
     this.proj = projectInfo.project;
-    console.log("Project Name to be edited:" +this.proj.projectname);
+    // console.log("Project Name to be edited:" +this.proj.projectname);
     this.taskuser = projectInfo.user;
     if (this.taskuser == null){
-      console.log("No manager selected");
+      // console.log("No manager selected");
       this.projectmanager = ""
     }
     else{
       this.projectmanager = this.taskuser.userfirstname;
-      console.log("Edit Project username:" +this.taskuser.userfirstname);
+      // console.log("Edit Project username:" +this.taskuser.userfirstname);
     }
     
     this.theCheckbox = true;
@@ -191,15 +191,15 @@ export class AddProjectComponent implements OnInit {
     this.taskuser = projectInfo.user;
 
     this.userDataFetcher.updateUserByProjectID(projectInfo.project.projectid).subscribe((param)=>{
-      console.log("project delinked from user");
+      // console.log("project delinked from user");
       this.taskdatafetcher.updateTaskByProjectID(projectInfo.project.projectid).subscribe((param)=>{
-        console.log("task deleted for the project");
+        // console.log("task deleted for the project");
         this.projectDataFetcher.deleteData(projectInfo.project.projectid).subscribe((param)=>{
-          console.log("project deleted for projectid");
+          // console.log("project deleted for projectid");
           if(this.taskuser!=null){
             this.taskuser.project=null;
             this.userDataFetcher.addData(this.taskuser).subscribe((param)=>{
-              console.log("projectid set to null in user table");
+              // console.log("projectid set to null in user table");
               this.getProjects();
               this.resetProject();
             })

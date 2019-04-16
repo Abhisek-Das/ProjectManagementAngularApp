@@ -27,8 +27,8 @@ export class ViewTaskComponent implements OnInit {
     this.projectDataFetcher.getProjects().subscribe((param)=> {this.projects=param;
       
       if (this.projects.errorMessage == "Project List is empty"){
-        console.log("get Projects error msg:" +this.projects.errorMessage);
-        console.log("No Projects");
+        // console.log("get Projects error msg:" +this.projects.errorMessage);
+        // console.log("No Projects");
         this.projects = [];
       }
     });
@@ -36,26 +36,26 @@ export class ViewTaskComponent implements OnInit {
 
   selectProject(){   
     this.tasklist = [];
-    console.log("selected project:"+this.projSelected);
+    // console.log("selected project:"+this.projSelected);
     this.projectObj = this.projSelected;
     this.projectname = this.projSelected.projectname;
 
-    console.log("this.projectname: " +this.projectname);
-    console.log("Projet ID: " +this.projSelected.projectid);
+    // console.log("this.projectname: " +this.projectname);
+    // console.log("Projet ID: " +this.projSelected.projectid);
     this.getTaskByProject();
 }
 
 getTaskByProject(){
-  console.log("Project id selected: " +this.projSelected.projectid);
+  // console.log("Project id selected: " +this.projSelected.projectid);
   if (this.projSelected.projectid==0){
-    console.log("No project Selected");
+    // console.log("No project Selected");
     this.tasklist = [];
   }
   else{
     this.taskDataFetcher.viewTaskByProjectID(this.projSelected.projectid).subscribe((param)=> {
       this.tasklist = param;
       if (this.tasklist.errorMessage == "Task List is empty"){
-        console.log("No Tasks for this project");
+        // console.log("No Tasks for this project");
         this.tasklist = [];
       }
     })
